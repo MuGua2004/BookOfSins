@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "book_of_sins:root_seal_pride",
+    "book_of_sins:root_seal_envy",
+    "book_of_sins:root_seal_wrath",
+    "book_of_sins:root_seal_sloth",
+    "book_of_sins:root_seal_greed",
+    "book_of_sins:root_seal_gluttony",
+    "book_of_sins:root_seal_lust"
+  ]
+}

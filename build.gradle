@@ -1,0 +1,124 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    // Mixin 编译/打包插件：提供 mixin{ refmap } 扩展，并在 reobfJar 阶段把 refmap
+    // 从官方名重映射到 SRG 名（生产环境运行时依赖此映射找到注入目标）。
+    id 'org.spongepowered.mixin' version '0.7.38'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: mapping_channel, version: mapping_version
+    copyIdeResources = true
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+        client {
+            property 'forge.enabledGameTestNamespaces', mod_id
+        }
+        server {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            args '--nogui'
+        }
+        data {
+            workingDirectory project.file('run-data')
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
+    }
+}
+
+repositories {
+    // AC Core：以 vendored jar 形式随仓库分发（libs/ac_core-1.0.3.jar，MIT）
+    flatDir {
+        dirs 'libs'
+    }
+    // Curios API
+    maven {
+        name = 'IllusiveC4'
+        url = 'https://maven.theillusivec4.top/'
+    }
+    // JEI API
+    maven {
+        name = 'BlameJared'
+        url = 'https://maven.blamejared.com/'
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // AC Core：星界的前置库（链条调度 / 资源池 / 伤害类型 / 表达式引擎都在那里）
+    implementation fg.deobf("com.example.ac_core:ac_core:${ac_core_version}")
+
+    // Curios：饰品栏（版本与目标整合包实例一致：curios-forge-5.14.1+1.20.1）
+    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+
+    // JEI：仅编译 API（逆转之书的信息页）；运行时由整合包实例提供本体
+    compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:${jei_version}")
+
+    // Mixin：0.8.5 与 Forge 1.20.1 运行环境内置的 Mixin 版本一致；
+    // annotationProcessor 负责生成 refmap（注入目标名映射）。
+    compileOnly 'org.spongepowered:mixin:0.8.5'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
+            forge_version: forge_version, forge_version_range: forge_version_range,
+            loader_version_range: loader_version_range,
+            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors: mod_authors, mod_description: mod_description,
+    ]
+    inputs.properties replaceProperties
+    filteringCharset = 'UTF-8'
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.add('-Xlint:-removal')
+}
+
+// Mixin：只声明 refmap，使 reobfJar 能把 refmap 从官方名重映射到 SRG 名。
+// mixins 配置文件由生产环境的 jar manifest（MixinConfigs 属性）与 dev 环境的
+// META-INF/MANIFEST.MF 资源共同声明——不要在此用 config{} 声明配置。
+mixin {
+    add sourceSets.main, 'book_of_sins.refmap.json'
+}
+
+// 生产环境 jar 的 manifest 声明 MixinConfigs，FML 据此发现并加载 mixin 配置
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'   : mod_id,
+                'Specification-Vendor'  : mod_authors,
+                'Specification-Version' : '1',
+                'Implementation-Title'  : project.name,
+                'Implementation-Version': mod_version,
+                'MixinConfigs'          : 'book_of_sins.mixins.json'
+        ])
+    }
+}

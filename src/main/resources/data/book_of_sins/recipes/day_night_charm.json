@@ -1,0 +1,28 @@
+{
+  "type": "book_of_sins:day_night",
+  "pattern": [
+    "TVS",
+    "VRV",
+    "MVP"
+  ],
+  "key": {
+    "T": {"item":"minecraft:torchflower"},
+    "V": {"item":"book_of_sins:void_heart"},
+    "S": {"item":"minecraft:silence_armor_trim_smithing_template"},
+    "R": {"item":"book_of_sins:root_seal_lust"},
+    "M": {"item":"minecraft:mycelium"},
+    "P": {"item":"minecraft:piglin_head"}
+  },
+  "result": {
+    "item": "book_of_sins:day_clamor",
+    "count": 1
+  },
+  "day_result": {
+    "item": "book_of_sins:night_hush",
+    "count": 1
+  },
+  "night_result": {
+    "item": "book_of_sins:day_clamor",
+    "count": 1
+  }
+}

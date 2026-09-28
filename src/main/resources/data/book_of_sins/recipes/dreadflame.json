@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    " N ",
+    "M F"
+  ],
+  "key": {
+    "F": {"item":"book_of_sins:cindercloud_flame"},
+    "M": {"item":"book_of_sins:abyssal_molt"},
+    "N": {"item":"minecraft:nether_star"},
+    "R": {"item":"book_of_sins:undead_remains"}
+  },
+  "result": {
+    "item": "book_of_sins:dreadflame",
+    "count": 1
+  }
+}

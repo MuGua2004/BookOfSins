@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ARA",
+    "ERE",
+    "ARA"
+  ],
+  "key": {
+    "A": {"tag":"book_of_sins:soul_sand_soil"},
+    "E": {"item":"minecraft:emerald"},
+    "R": {"item":"book_of_sins:undead_remains"}
+  },
+  "result": {
+    "item": "book_of_sins:fallen_skull",
+    "count": 1
+  }
+}

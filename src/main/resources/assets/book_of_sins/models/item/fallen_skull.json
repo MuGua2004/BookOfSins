@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "book_of_sins:item/fallen_skull"
+  }
+}

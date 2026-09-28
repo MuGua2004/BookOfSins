@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.example.book_of_sins.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "book_of_sins.refmap.json",
+  "mixins": [
+    "LivingEntityEatMixin",
+    "PiglinPickupMixin",
+    "VillagerRestockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

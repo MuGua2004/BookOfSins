@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "book_of_sins:sin_tome_pride",
+    "book_of_sins:sin_tome_envy",
+    "book_of_sins:sin_tome_wrath",
+    "book_of_sins:sin_tome_sloth",
+    "book_of_sins:sin_tome_greed",
+    "book_of_sins:sin_tome_gluttony",
+    "book_of_sins:sin_tome_lust",
+    "book_of_sins:reversal_tome_pride",
+    "book_of_sins:reversal_tome_envy",
+    "book_of_sins:reversal_tome_wrath",
+    "book_of_sins:reversal_tome_sloth",
+    "book_of_sins:reversal_tome_greed",
+    "book_of_sins:reversal_tome_gluttony",
+    "book_of_sins:reversal_tome_lust"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "providers": [
+    {"type": "bitmap", "file": "book_of_sins:font_icon/slot_0.png", "ascent": 7, "height": 8, "chars": ["\uE000"]},
+    {"type": "bitmap", "file": "book_of_sins:font_icon/slot_1.png", "ascent": 7, "height": 8, "chars": ["\uE001"]},
+    {"type": "bitmap", "file": "book_of_sins:font_icon/slot_2.png", "ascent": 7, "height": 8, "chars": ["\uE002"]},
+    {"type": "bitmap", "file": "book_of_sins:font_icon/slot_3.png", "ascent": 7, "height": 8, "chars": ["\uE003"]},
+    {"type": "bitmap", "file": "book_of_sins:font_icon/slot_4.png", "ascent": 7, "height": 8, "chars": ["\uE004"]},
+    {"type": "bitmap", "file": "book_of_sins:font_icon/slot_5.png", "ascent": 7, "height": 8, "chars": ["\uE005"]},
+    {"type": "bitmap", "file": "book_of_sins:font_icon/slot_6.png", "ascent": 7, "height": 8, "chars": ["\uE006"]},
+    {"type": "bitmap", "file": "book_of_sins:font_icon/slot_7.png", "ascent": 7, "height": 8, "chars": ["\uE007"]}
+  ]
+}

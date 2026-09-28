@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NRN",
+    "MDF",
+    "NCN"
+  ],
+  "key": {
+    "C": {"item":"book_of_sins:emerald_heart_crystal"},
+    "D": {"item":"minecraft:dragon_egg"},
+    "F": {"item":"book_of_sins:cindercloud_flame"},
+    "M": {"item":"book_of_sins:abyssal_molt"},
+    "N": {"item":"minecraft:netherite_block"},
+    "R": {"item":"book_of_sins:undead_remains"}
+  },
+  "result": {
+    "item": "book_of_sins:final_canto",
+    "count": 1
+  }
+}
